@@ -14,14 +14,6 @@
         "detour": "freedom-gateway"
       },
       {
-        "tag": "dns",
-        "address": "https://8.8.8.8/dns-query",
-        "address_resolver": "direct-dns",
-        "address_strategy": "prefer_ipv6",
-        "strategy": "prefer_ipv6",
-        "detour": "freedom-gateway"
-      },
-      {
         "tag": "direct-dns",
         "address": "local",
         "address_strategy": "prefer_ipv6",
@@ -47,7 +39,6 @@
           "h.88981401.xyz",
           "arvancloudstatus.ir",
           "all-in.daiijannapoleon.fun",
-          "arvancloudstatus.ir",
           "azadi2.dgi000.store"
         ],
         "server": "direct-dns",
@@ -61,7 +52,7 @@
       },
       {
         "outbound": "freedom-gateway",
-        "server": "dns",
+        "server": "freedom-gateway",
         "rewrite_ttl": 20
       },
       {
@@ -97,7 +88,7 @@
   "outbounds": [
     {
       "type": "selector",
-      "tag": "@Gozargah_Azadi",
+      "tag": "freedom-gateway-selector",
       "outbounds": [
         "Germany",
         "Uzbekistan",
@@ -141,8 +132,20 @@
       "headers": {
         "Host": "marilynmanson.link"
       }
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
     }
-   ], 
+  ],
   "route": {
     "rules": [
       {
@@ -154,7 +157,7 @@
         "outbound": "direct"
       }
     ],
-    "final": "freedom-gateway",
+    "final": "freedom-gateway-selector",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
