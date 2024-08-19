@@ -91,25 +91,16 @@
       "tag": "freedom-gateway-selector",
       "outbounds": [
         "Germany",
-        "Uzbekistan",
-        "Armenia",
-        "Germany2",
-        "Finland",
-        "Georgia",
-        "Denmark"
+        
+        
       ]
     },
     {
       "type": "urltest",
       "tag": "freedom-gateway-urltest",
       "outbounds": [
-        "Germany",
-        "Uzbekistan",
-        "Armenia",
-        "Germany2",
-        "Finland",
-        "Georgia",
-        "Denmark"
+        "Germany"
+      
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "10m0s",
