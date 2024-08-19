@@ -1,0 +1,169 @@
+{
+  "log": {
+    "disabled": true,
+    "level": "panic"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "freedom-gateway",
+        "address": "https://8.8.8.8/dns-query",
+        "address_resolver": "direct-dns",
+        "address_strategy": "prefer_ipv6",
+        "strategy": "prefer_ipv6",
+        "detour": "freedom-gateway"
+      },
+      {
+        "tag": "dns",
+        "address": "https://8.8.8.8/dns-query",
+        "address_resolver": "direct-dns",
+        "address_strategy": "prefer_ipv6",
+        "strategy": "prefer_ipv6",
+        "detour": "freedom-gateway"
+      },
+      {
+        "tag": "direct-dns",
+        "address": "local",
+        "address_strategy": "prefer_ipv6",
+        "strategy": "prefer_ipv6",
+        "detour": "direct"
+      },
+      {
+        "tag": "block-dns",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          ".arpa.",
+          ".arpa"
+        ],
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "domain_suffix": [
+          "h.88981401.xyz",
+          "arvancloudstatus.ir",
+          "all-in.daiijannapoleon.fun",
+          "arvancloudstatus.ir",
+          "azadi2.dgi000.store"
+        ],
+        "server": "direct-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "freedom-gateway",
+        "server": "dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "direct",
+        "server": "direct-dns",
+        "rewrite_ttl": 20
+      }
+    ],
+    "strategy": "prefer_ipv6",
+    "disable_expire": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "mixed",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
+      "sniff": true,
+      "domain_strategy": "prefer_ipv6"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "@Gozargah_Azadi",
+      "outbounds": [
+        "Germany",
+        "Uzbekistan",
+        "Armenia",
+        "Germany2",
+        "Finland",
+        "Georgia",
+        "Denmark"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "freedom-gateway-urltest",
+      "outbounds": [
+        "Germany",
+        "Uzbekistan",
+        "Armenia",
+        "Germany2",
+        "Finland",
+        "Georgia",
+        "Denmark"
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "10m0s",
+      "tolerance": 50,
+      "idle_timeout": "30m0s"
+    },
+    {
+      "type": "http",
+      "tag": "Germany",
+      "server": "194.233.96.24",
+      "server_port": 90,
+      "username": "yLoEDZiuRqdg8HqQfaEMXhzn",
+      "password": "Emy3zUbgjrz4mPxuwZSNmuLP",
+      "tls": {
+        "enabled": true,
+        "server_name": "gitlab.com",
+        "insecure": true,
+        "alpn": "h2,http/1.1"
+      },
+      "headers": {
+        "Host": "marilynmanson.link"
+      }
+    }
+    
+  "route": {
+    "rules": [
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "final": "freedom-gateway",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "azadi",
+      "rdrc_timeout": "168h0m0s"
+    }
+  }
+}
