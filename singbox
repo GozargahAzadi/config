@@ -90,7 +90,7 @@
       "type": "selector",
       "tag": "freedom-gateway-selector",
       "outbounds": [
-        "Germany",
+        "Germany"
         
         
       ]
